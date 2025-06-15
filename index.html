@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blob from IPNS</title>
+  </head>
+  <body style="font-family: sans-serif;">
+    
+<div id="app">
+  <div>
+    <h1>Blob from IPNS:</h1>
+    <p id="output" class="output"></p>
+  </div>
+</div>
+    
+<script>
+import { verifiedFetch } from 'https://esm.sh/@helia/verified-fetch?bundle-deps'
+const output = document.getElementById('output')
+
+const resp = await verifiedFetch('ipns://k51qzi5uqu5dhp48cti0590jyvwgxssrii0zdf19pyfsxwoqomqvfg6bg8qj3s')
+const blob = await resp.blob()
+const imgEl = document.createElement('img')
+imgEl.setAttribute('src', URL.createObjectURL(blob))
+output.appendChild(imgEl)
+
+</script>
+  </body>
